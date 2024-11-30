@@ -1,0 +1,216 @@
+{% extends "tango/base.html" %}
+{% load static %}
+{% load course_tags %}
+
+
+{% block content %}
+
+<meta name="title" property="og:title" content="TangoSix O'Clock">
+<meta property="og:type" content="website">
+<meta name="image" property="og:image" content="https://tangowindows.s3.amazonaws.com/images/TangoLogo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3J2PI5IBCMJAUV7L%2F20240221%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20240221T114750Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=184a72dc792eb95e9e72ad15394ca9ea6e287cba4a204898c6092dc372eb15d1">
+<meta name="description" property="og:description" content="Tango Six O'Clock is your Armory. Whether you are an individual, family, society, institution, corporation, or state, we offer whatever you need to secure and defend yourself and your assets against all malicious intent or actions. Let's join forces to make Bharat Secure and Safe from within.">
+<meta name="Tango" property="og:url" content="www.tangosixclock.in">
+<meta name="title" property="og:image:width" content="50px">
+<meta name="title" property="og:image:height" content="100px">
+
+<link rel="stylesheet" type="text/css" href="{% static '/Css/home.css' %}">
+
+    
+<!--  *****   Link To Font Awsome Icons   *****  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<!--  *****   Link To Owl Carousel   *****  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+<div class="website-container">
+
+    <section class="home" id="home">
+        
+        <!--   === Banner Starts ===   -->
+        <div class="banner">
+            
+            <div class="banner-desc">
+                <h2>India's First Israeli Counter Crime EdTech </h2>
+                <p><i>Join Us In Building India's Security Culture against Criminals and Radicals.</i></p>
+               
+                
+                <a href="{% url 'testimonial_policy' %}" target ="_blank"><button class="courses-btn btn">No Testimony Policy</button></a>
+               
+            </div>
+    
+            <div class="banner-img">
+                <div class="banner-img-container">
+                    <img src="{% static 'images/SecurityCulture.gif' %}">
+    
+                    {% comment %} <div class="states">
+                        <div class="total-courses">
+                            <div class="icon">
+                                <i class="fa-solid fa-book"></i>
+                            </div>
+                            <div class="desc">
+                                <span>284+</span>
+                                <span>Total Courses</span>
+                            </div>
+                        </div>
+    
+                        <div class="courses-ratings">
+                            <span>4.7<i class="fa-solid fa-star"></i></span>
+                            <span>Ratings (58k)</span>
+                        </div>
+                    </div> {% endcomment %}
+    
+                    <div class="pattern">
+                        <img src="{% static 'images/pattern.png' %}">
+                    </div>
+                    
+    
+                </div>
+            </div>
+    
+        </div>
+        <!--   === Banner Ends ===   -->
+    </section>
+
+
+
+<!--   *** Expertise Section Starts ***   -->
+<section class="services" id="services">
+<!--   *** Expertise Header Starts ***   -->
+<header class="section-header">
+    <h1>Our Expertise</h1>
+    <p><i>Having Tactical Associations with ISA-Israel and its ELITE, comes with its share of maintaining ELITE standards in all the services we offer. So when its comes to quality, we have a reputation to live up to.</i></p>
+</header>
+<!--   *** Expertise Header Ends ***   -->
+<!--   *** Expertise Contents Starts ***   -->
+<div class="services-contents">
+
+    <div class="service-box">
+        <div class="service-icon">
+            <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <div class="service-desc">
+            <h2>Israeli Counter Crime Education (#TSoC_ICCE)</h2>
+            <p>Developed right out of the Israeli Security Doctrine for Close Protection & Counter Terrorism, ICCE programs offer an effective solution for ordinary citizens to deter and counter crime. 
+	       If you are above the age of 16 years and are concerned about your security in personal and public spaces, then these programs will put your concern to rest. 
+               Tactically designed to be delivered over a combination of online & offline platforms, the content creates awareness on topics like Security, Threats, Crime-Timeline, Personal Security Firewalls, Fight Back Strategy, Community Policing, Israeli Mental & Physical Preparedness, and more.</p>
+               <a href="http://127.0.0.1:8000/no_testimony_policy/#testimonial" class="read-more">Case Study</a>
+        </div>
+    </div>
+
+    <div class="service-box">
+        <div class="service-icon">
+            <i class="fa-solid fa-sitemap"></i>
+        </div>
+        <div class="service-desc">
+            <h2>360 Degree Security Architecture</h2>
+            <p>Offering a complete 360-degree security architecture to help you secure your most valued assets (Man/Material/Space). Right from Reconnaissance, Threat Assessment (OSINT and HUMINT), Security Architecture Design (SAD),  Vendor/Product Recommendation and Deployment, SAD  Reconciliation, Security Philosophy and Methodology Design and Implementation, and Tactical Training</p>
+        </div>
+    </div>
+
+    <div class="service-box">
+        <div class="service-icon">
+            <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <div class="service-desc">
+            <h2>Close Protection - Training, Design and Upskilling</h2>
+            <p>Close Protection/Executive Protection/VIP Protection is a niche service that requires one to function 24/7 under significant stress. In such scenarios, it is always better to bring in professionals to train and guide the operatives to deal with not just the evolving threats to their assets, but also upgrade them with more efficient SOPs and tactics. At TSoC, we offer you just that. Israeli Close Protection expertise combined with operational experience from ex-Indian Special Forces. Reach out to us to know how we could integrate our expertise into your security detail.</p>
+        </div>
+    </div>
+    <div class="service-box">
+        <div class="service-icon">
+            <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <div class="service-desc">
+            <h2>Tactical Life Skills (#TSoC_TLS)</h2>
+            <p>Empower your kids with emotional intelligence, accurate thinking, tactical decision-making and more critical life-skills. Discover our TLS program for schools and colleges.</p>
+        </div>
+    </div>
+
+    <div class="service-box">
+        <div class="service-icon">
+            <i class="fa-solid fa-people-roof"></i>
+        </div>
+        <div class="service-desc">
+            <h2>Community Security (#TSoC_CommunityPolicing)</h2>
+            <p>Is your community secured from crime, criminals and events of public unrest? Book your consulting NOW!</p>
+        </div>
+    </div>
+
+    <div class="service-box">
+        <div class="service-icon">
+            <i class="fa-solid fa-book"></i>
+        </div>
+        <div class="service-desc">
+            <h2>Capability Building and Product Innovation for PSAs</h2>
+            <p>Enhance security efficiency and reduce costs with innovative products for your Private Security Agency. Book a consulting slot today.</p>
+        </div>
+    </div>
+
+</div>
+<!--   *** Services Contents Ends ***   -->
+</section>
+<!--   *** Expertise Section Ends ***   -->
+
+ <!--   *** Courses Section Starts ***   -->
+
+<!--   *** Courses Contents Ends ***   -->
+
+
+<!--   *** Teacher Section Starts ***   -->
+{% comment %} <section class="instructor">
+<div class="instructor-container">
+    <h2>Embark with us </h2>
+    <p><i>Watch a small introduction about us</i></p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/zaazOXqmHHE?si=ZUDcKSYS-TDtuaRi" title="Tango" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen align="center"></iframe>
+</div>
+</section> {% endcomment %}
+
+{% comment %} <section class="services" id="services">
+
+<header class="section-header">
+    <h1>Why Choose Us</h1>
+    
+</header>
+<div class="services-contents">
+
+    <div class="service-box">
+        <div class="service-icon">
+            <i class="fa-solid fa-calendar"></i>
+        </div>
+        <div class="service-desc">
+            <h2>Flexible Timing</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
+
+    <div class="service-box">
+        <div class="service-icon">
+            <i class="fa-solid fa-users"></i>
+        </div>
+        <div class="service-desc">
+            <h2>Expert Teachers</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
+
+    <div class="service-box">
+        <div class="service-icon">
+            <i class="fa-solid fa-clock"></i>
+        </div>
+        <div class="service-desc">
+            <h2>24/7 Live Support</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
+
+</div>
+</section> {% endcomment %}
+<!--   *** Services Section Ends ***   -->
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script type="text/javascript" src="{% static "javascript/home.js" %}"></script>
+{% endblock content %}

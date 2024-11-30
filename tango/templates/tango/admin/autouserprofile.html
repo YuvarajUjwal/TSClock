@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Userprofiles Download</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh; /* Viewport height */
+            margin: 0; /* Reset default margin */
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            background-color: #fff;
+            padding: 15px; /* Reduced padding */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            width: 80%; /* Set a specific width */
+            max-width: 500px; /* Maximum width */
+        }
+        input, button {
+            display: block;
+            width: calc(100% - 20px); /* Adjust width to account for padding */
+            padding: 8px; /* Reduced padding */
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px; /* Adjust font size if necessary */
+        }
+        button {
+            background-color: #0084ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Download userprofiles CSV</h1>
+    <form action="/autouserprofile/" method="get">
+        <input type="hidden" name="action" value="download">
+        <button id="download-btn" type="submit">Download</button>
+    </form>
+    <br>
+    <br>
+    <h1>Upload userprofiles CSV</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" id ="id_course" name="course" placeholder="Password"> 
+        <input type="file" id="id_csv_file" name="csv_file" accept=".csv,.xlsx" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <script>
+        document.getElementById('download-btn').addEventListener('click', function() {
+            fetch('/autouserprofile?action=download')
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(new Blob([blob]));
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'userprofile.csv';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                });
+        });
+    </script>
+</body>
+</html>

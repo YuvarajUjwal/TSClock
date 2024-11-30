@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d8e9df;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #339900;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
+    .up,
+    .del,
+    .war {
+        display: inline-block;
+        padding: 8px 12px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-right: 10px; /* Adjust the margin value as needed */
+    }
+
+    .up {
+        background-color: #4caf50;
+        color: #fff;
+    }
+    .war{
+        background-color : #ffc107;
+        color: #fff; 
+    }
+    .del {
+        margin-top: 5px;
+        background-color: #f44336;
+        color: #fff;
+    }
+
+    .up:hover {
+        background-color: #45a049;
+    }
+
+    .del:hover {
+        background-color: #d32f2f;
+    }
+
+    .war:hover{
+        background-color : #ffcc00;
+        color: #fff; 
+    }
+    </style>
+</head>
+<body>
+    <div class="actions">
+        <h2>Coupon Page</h2>
+        <a href="{% url 'createcouponpage' %}" class="up">Create New Coupon</a>
+        <a href="{% url 'adminpage' %}" class="war">Back To Admin Page</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>S.NO</th>
+                <th>Course</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Pan Card</th>
+                <th>Phone</th>
+                <th>Discount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for coupon in coupons %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ coupon.course }}</td>
+                    <td>{{ coupon.name }}</td>
+                    <td>{{ coupon.code }}</td>
+                    <td>{{ coupon.pan_number }}</td>
+                    <td>{{ coupon.phone }}</td>
+                    <td>{{ coupon.discount }}</td>
+                    <td>
+                        <a href="{% url 'updatecouponpage' coupon.id %}" class="up">Update</a>
+                        <a href="{% url 'deletecouponpage' coupon.id %}" class="del">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

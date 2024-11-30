@@ -1,0 +1,200 @@
+{% load static %}
+{% load course_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Tango Six O'Clock | Course</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+   {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> {% endcomment %}
+   <link rel="shortcut icon" href="{% static 'images/Tango.webp' %}" type="image/x-icon">
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="{% static '/Css/profile.css' %}">
+   <style>
+      .alert {
+         padding: 15px;
+         margin-bottom: 20px;
+         border: 1px solid transparent;
+         border-radius: 4px;
+       }
+       
+       .alert-info {
+         color: #31708f;
+         background-color: #d9edf7;
+         border-color: #bce8f1;
+       }
+       
+       .alert-info h2 {
+         margin-top: 0;
+       }
+      </style>
+
+</head>
+<body>
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a class="logo"><img width="80px" height="80px" src="{% static 'images/TangoLogo.png' %}" alt="Tango Logo"></a>
+
+      {% comment %} <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form> {% endcomment %}
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         
+      </div>
+
+      <div class="profile">
+         {% comment %} <h3 class="name">{{request.user.email}}</h3> {% endcomment %}
+         <div class="flex-btn">
+            <a href="{% url 'logoutpage' %}" class="option-btn">Logout</a>
+            {% comment %} <a href="{% url 'help' %}" class="option-btn">Support</a> {% endcomment %}
+            <a href="{% url 'profile' %}" class="option-btn">Profile</a>
+         </div>
+      </div>
+
+   </section>
+
+</header>   
+
+<div class="side-bar">
+
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   {% comment %} <div class="profile">
+      <p class="name">Username : {{request.user.username}}</p>
+      <p class="name">{{request.user.email}}</p>
+      <p class="role">User ID : {{request.user.userprofile.profileid}}</p>
+      <a href="{% url 'profile' %}" class="btn">Profile</a>
+   </div> {% endcomment %}
+
+   <nav class="navbar">
+      <a href="{% url 'home' %}"><span>Home</span></a>
+      <a href="{% url 'about' %}"><span>About</span></a>
+      <a href="{% url 'Programs' %}"><span>Programs</span></a>
+      <a href="{% url 'contact' %}"><span>Contact Us</span></a>
+      <a href="{% url 'newsletter' %}"><span>Blogs</span></a>
+      <a href="{% url 'Faq' %}"><span>FAQ</span></a>
+   </nav>
+
+</div>
+
+<section class="playlist-details">
+
+   <h1 class="heading">Course detail</h1>
+
+   <div class="row">
+
+      <div class="column">
+         {% comment %} <form method="POST" class="save-playlist">
+            <button type="submit"><i class="far fa-bookmark"></i> <span>save playlist</span></button>
+         </form>
+    {% endcomment %}
+         <div class="thumb">
+            <img src="{{course.thumbnail.url}}" alt="">
+            {% comment %} <span>{{course.numbers_of_chapter}}</span> {% endcomment %}
+         </div>
+      </div>
+      <div class="column">
+         <div class="details">
+            <h3>{{course.name}}</h3>
+            <p>{{course.description}}</p>
+            {%  is_enrolled request course as enrolled %}
+            {% if enrolled %}
+               {% if not certificate %}
+               <p style="font-size: 13px; margin-bottom:1px;">You have to complete all the videos to download Certificate.</p>
+            <a class="inline-btn" href="">Certificate</a>
+               {% else %}
+               <p style="font-size: 13px; margin-bottom:1px;">You have completed the course, you can download Certificate.</p>
+            <a class="inline-btn" href="{% url 'certificate' %}">Certificate</a>
+               {% endif %}
+            {% else %}
+            <p style="font-size: 13px; margin-bottom:1px;">To unlock all the videos Buy Course</p>
+            <a href="{% url 'payment' course.slug %}" class="inline-btn">Pay ₹{{course.price}}</a>
+            {% endif %}
+         </div>
+         
+      </div>
+   </div>
+
+</section>
+
+<section class="playlist-videos">
+
+   <h1 class="heading">Chapters</h1>
+   {% if error_msg %}
+      <div class="alert alert-info"><h2>{{error_msg}}</h2></div>
+            {% endif %}
+
+   <div class="box-container">
+      {% is_enrolled request course as enrolled %}
+      {% for v in chapters %}
+         {% if v.is_preview or enrolled %}
+            {% if v.serial_number <= min_ch %}
+               {% if v.serial_number <= user.chapter %}
+               <a class="box" href="{% url 'watch' v.slug v.serial_number %}">
+                  <i class="fas fa-play"></i>
+                  <img src="{{v.thumbnail.url}}" alt="Image">
+                  <h3 style="text-decoration:None;">{{v.serial_number}}. {{v.title}} </h3>
+               </a>
+               {% else %}
+                  <a class="box" href="?action=locked">
+                     <i class="fas fa-lock" ></i>
+                     <img src="{{v.thumbnail.url}}" alt="Image">
+                     <h3 style="text-decoration:None;">{{v.serial_number}}. {{v.title}} </i></h3>
+                  </a>
+               {% endif %}
+            {% else %}
+               <a class="box" href="{% url 'payment' course.slug %}">
+                  <i class="fas fa-lock" ></i>
+                  <img src="{{v.thumbnail.url}}" alt="Image">
+                  <h3 style="text-decoration:None;">{{v.serial_number}}. {{v.title}} </i></h3>
+               </a>
+                  
+            {% endif %}
+            
+         {% else %}
+         <a class="box" href="{% url 'payment' course.slug %}">
+            <i class="fas fa-lock" style="color:#edfaf1;"></i>
+            <img src="{{v.thumbnail.url}}" alt="Image">
+            <h3 style="text-decoration:None;">{{v.serial_number}}. {{v.title}}  </i></h3>
+         </a>
+         {% endif %}
+   {% endfor %}
+
+   </div>
+
+</section>
+
+
+<footer class="footer">
+
+   &copy; copyright 2024 by <span>Tango</span> | All Rights Reserved!
+
+</footer>
+
+
+
+
+
+
+
+
+<!-- custom js file link  -->
+<script src="{% static 'javascript/profile.js' %}"></script>
+
+   
+</body>
+</html>

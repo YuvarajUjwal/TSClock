@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800&display=swap");
+body {
+  background-color: #d8e9df;
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #208245;
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.download-btn:hover {
+  background-color: #fff;
+  color: #208245;
+  border: 1px solid #208245;
+}
+
+.container h1 {
+  text-align: center;
+  text-decoration: underline;
+  font-family: "Roboto", sans-serif;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("mona-sans/fonts/ttf/MonaSans-Regular.ttf") format("truetype");
+  /* Replace 'path-to-your-font-file/MonaSans-Regular.ttf' with the actual path to your font file */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("mona-sans/fonts/ttf/MonaSans-Bold.ttf") format("truetype");
+  /* Replace 'path-to-your-font-file/MonaSans-Bold.ttf' with the actual path to your bold font file */
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("mona-sans/fonts/ttf/MonaSans-SemiBold.ttf") format("truetype");
+  /* Replace 'path-to-your-font-file/MonaSans-Bold.ttf' with the actual path to your bold font file */
+  font-weight: semibold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mona Sans";
+  src: url("mona-sans/fonts/ttf/MonaSansCondensed-Black.ttf") format("truetype");
+  /* Replace 'path-to-your-font-file/MonaSans-Bold.ttf' with the actual path to your bold font file */
+  font-weight: semibold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("mona-sans/fonts/ttf/MonaSansCondensed-ExtraLight.ttf")
+    format("truetype");
+  /* Replace 'path-to-your-font-file/MonaSans-Bold.ttf' with the actual path to your bold font file */
+  font-weight: semibold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("mona-sans/fonts/ttf/MonaSans-SemiBold.ttf") format("truetype");
+  /* Replace 'path-to-your-font-file/MonaSans-Bold.ttf' with the actual path to your bold font file */
+  font-weight: semibold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("mona-sans/fonts/otf/MonaSans-Regular.otf") format("otf");
+  /* Replace 'path-to-your-font-file/MonaSans-Bold.ttf' with the actual path to your bold font file */
+  font-weight: semibold;
+  font-style: normal;
+}

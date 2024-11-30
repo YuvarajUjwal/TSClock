@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="{% static 'images/Tango.webp' %}" type="image/x-icon">
+<title>Tango Six O'Clock | Quiz Score</title>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800&display=swap");
+    body {
+        font-family: "Roboto", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        text-align: center;
+    }
+    .score {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+    .button-container {
+        text-align: center;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    
+    .ring-wrapper {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+    }
+    
+    .ring-circle {
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 20;
+    }
+    
+    .ring-progress {
+        fill: none;
+        stroke: #4caf50;
+        stroke-width: 20;
+        stroke-dasharray: 0 1000;
+        transition: stroke-dasharray 0.5s ease;
+    }
+    
+    .score-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Quiz Score</h1>
+    <div class="ring-wrapper">
+        <svg viewBox="0 0 100 100">
+            <circle class="ring-circle" cx="50" cy="50" r="40"></circle>
+            <circle class="ring-progress" cx="50" cy="50" r="40"></circle>
+        </svg>
+        <div class="score-overlay">
+            <p>{{ score }}%</p>
+        </div>
+    </div>
+    
+
+    {% if next %}
+    <p>Successfully Completed!!</p>
+    <div class="button-container">
+        <a href="{% url 'course' cor %}"><button>Next Chapter</button><a>
+    </div>
+    {% else %}
+    <p>You didn't get some questions right. Do re-watch the video(s) and reattempt the quiz.</p>
+    <div class="button-container">
+        <a href="{% url 'quiz' cor ch %}"><button>Retake</button><a>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var score = {{ score }};
+        var totalQuestions = 100;
+        var percentage = (score);
+        var progressCircle = document.querySelector('.ring-progress');
+        var circumference = progressCircle.getTotalLength();
+        var offset = circumference - (percentage / 100) * circumference;
+        progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+        progressCircle.style.strokeDashoffset = offset;
+    });
+</script>
+
+</body>
+</html>

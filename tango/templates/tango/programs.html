@@ -1,0 +1,156 @@
+{% extends "tango/base.html" %}
+{% load static %}
+{% load course_tags %}
+
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static '/Css/programs.css' %}">
+    
+<!--  *****   Link To Font Awsome Icons   *****  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<!--  *****   Link To Owl Carousel   *****  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+<div class="website-container">
+
+ <!--   *** Courses Section Starts ***   -->
+<section class="courses" id="courses">
+<!--   *** Courses Header Starts ***   -->
+<header class="section-header">
+    
+    <div class="header-text">
+        <h1>Welcome To Your Tactical Armory </h1> 
+        <p><i>To make available to you critical security and safety education designed and created by those who have spent decades fighting threats and eliminating vulnerabilities.</i></p>
+    </div>
+    {% comment %} <button class="courses-btn btn">View All</button>  {% endcomment %}
+</header>
+
+
+  {% comment %} <section class="playlist-details-banner">
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <div class="thumb">
+                    <img class="course-image" src="{% static "images/XPRESS.jpg" %}" alt="Course Thumbnail">
+                </div>
+
+                <div class="video-container" style="display: none;">
+                    <div style="padding:56.25% 0 0 0;height:250px;position:relative;">
+                        <iframe class="course-video" src="https://player.vimeo.com/video/934692097?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                    <script src="https://player.vimeo.com/api/player.js"></script>
+                </div>
+
+            </div>
+            <div class="column">
+                <div class="details">
+                    <h2>TSoC Delta Xpress</h2>
+                    <p>Level 1, Basic Security Awareness Training (BSAT)</p>
+                </div>
+                <div class="playlist-course-desc">
+                    <span><i class="fa-solid fa-clock"></i> 2 Weeks</span>
+                    <span><i class="fa-solid fa-language"></i> English</span>
+                    <a class="inline-btn" target="_blank" href="https://rzp.io/l/tsocdelta-xpress">Register</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>  {% endcomment %}
+
+
+
+<div class="course-contents">
+    {% for course in courses %}
+    {% if course.exclusive %}
+    <div class="course-card" id="exclusive">
+        <h4 class="course-heading">LIVE</h4>
+    {% else %}
+    <div class="course-card">
+        <h4 class="course-heading">RECORDED</h4>
+   {% endif %}
+        <div class="video-container" style="display: none;">
+        <div style="padding:56.25% 0 0 0;height:25  0px;position:relative;">
+            <iframe class="course-video" src="https://player.vimeo.com/video/{{course.Intro_Video_ID}}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+        </div>
+        <img class="course-image" src="{{course.thumbnail.url}}" >
+        <div class="category">
+            
+        </div>
+        <h1 class="course-title">{{course.name}}</h1>
+        <br>
+        <p class="simple">{{course.description}}</p>
+        
+        <div class="course-desc">
+            <span><i class="fa-solid fa-clock"></i> {{course.time_to_complete}}</span>
+            <span><i class="fa-solid fa-language"></i> {{course.language}}</span>
+        </div>
+        <div class="course-desc">
+            {% comment %} <span><i class="fa-solid fa-indian-rupee-sign"> {% cal_sellprice course.price course.discount as value %}{{value}}</i></span> {% endcomment %}
+            <span><strong>Minimum Qualification :</strong> {{course.requirement_to_complete}}</span>
+        </div>
+        <div class="course-desc course-details">
+            {% comment %} <span><i class="fa-solid fa-indian-rupee-sign"> {% cal_sellprice course.price course.discount as value %}{{value}}</i></span> {% endcomment %}
+            {% comment %} <span><strong>Course Details :</strong>  {{course.Course_Details|linebreaks|linebreaksbr}}</span> {% endcomment %}
+            {% comment %} <span><strong>Course Details :</strong> <span class="truncated-details">{{ course.Course_Details|truncatechars:100 }}</span><span class="full-details" style="display:none;">{{ course.Course_Details }}</span></span> {% endcomment %}
+            {% comment %} <span><strong>Course Details :</strong> <span class="truncated-details">{{ course.Course_Details|truncatechars:100 }}</span><span class="full-details" style="display:none;">{{ course.Course_Details |linebreaks|linebreaksbr }}</span> <a href="#" class="read-more">Read More</a><a href="#" class="read-less" style="display:none;">Read Less</a></span> {% endcomment %}
+        {% if course.active %}
+        <span><strong>Course Details :</strong> <span class="truncated-details">{{ course.Course_Details|truncatechars:60 }}</span><span class="full-details" style="display:none;">{{ course.Course_Details|linebreaks|linebreaksbr }}</span>
+            <a href="#" class="read-more">Read More</a>
+        {% else %}
+        <span><strong>Course Details :</strong>
+        <span class="truncated-details">{{ course.description|truncatechars:45}}</span>
+        {% endif %}
+        </span>
+        </div>
+        <div class="course-ratings">
+             {% if course.active %}
+                {% if course.exclusive %}
+                <span></span>
+                {% else %}
+                <span>{% cal_sellprice course.price course.discount as value %}{{value|rupee}}</span>
+                {% endif %}
+                {% if course.exclusive %}
+                <span><a href="https://rzp.io/l/tsocdelta-xpress" target="_blank"><h4>Register</h4></a></span>
+                {% else %}
+                <span><a href="{% url 'course' course.slug %}"><h4>Show More</h4></a></span>
+                {% endif %}
+            
+            {% else %}
+                <span>Coming Soon</span>
+            {% endif %} 
+            
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+<!--   *** Courses Contents Ends ***   -->
+</section>
+</div>
+
+<div id="courseModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="fullCourseDetails" class="modal-text"></div>
+    </div>
+  </div>
+
+  <div id="mobilePopup" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <div class="popup-content">
+            <p></p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+  
+<script type="text/javascript" src="{% static "javascript/programs.js" %}"></script>
+{% endblock content %}

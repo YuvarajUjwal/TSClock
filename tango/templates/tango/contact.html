@@ -1,0 +1,132 @@
+{% extends "tango/base.html" %} {% load static %} {% block title %} | Contact
+Us{% endblock title %} {% block content %}
+<link rel="stylesheet" href="{% static '/Css/contact.css' %}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+<div class="container">
+  <span class="big-circle"></span>
+  <img
+    src="{% static '/images/shape.png' %}"
+    class="square"
+    alt="Tango shape"
+  />
+  <div class="form">
+    <div class="contact-info">
+      <h3 class="title">Let's get in touch</h3>
+
+      <br />
+      <br />
+
+      <div class="info">
+        <div class="information">
+          <img src="{% static 'images/email.png' %}" class="icon" alt="" />
+          <p>info@tangosixoclock.in</p>
+        </div>
+        <div class="information">
+          <img src="{% static 'images/smartphone.png' %}" class="icon" alt="" />
+          <p>+91 8287725661</p>
+        </div>
+
+        <!-- <div class="information">
+          <img src="{% static 'images/email.png' %}" class="icon" alt="" />
+          <p>+91 7893139577 (South India)</p>
+        </div> -->
+        <div class="information">
+          <img src="{% static 'images/telephone.png' %}" class="icon" alt="" />
+          <p>0124 3601775 (Gurgaon Head Office)</p>
+        </div>
+        <div class="information">
+          <img src="{% static 'images/location.png' %}" class="icon" alt="" />
+          <p>
+            Registered Office:<br /><br />
+            <strong>TANGOSIXOCLOCK LLP</strong><br />
+            G-405, Sohna Road, Sec 49,<br />
+            Gurugram, 122018,<br />
+            Haryana - India.<br /><br />
+            <strong>GST NO:</strong> 06AATFT7816B1ZX
+          </p>
+        </div>
+      </div>
+
+      <div class="social-media">
+        <p>Connect with us :</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/tango6oclock/" target="__blank">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://x.com/TangoSixOClock" target="__blank">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+          <a href="https://wa.me/918287725661" target="__blank">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+	  <a href="https://t.me/IsraeliCounterCrimeEducation" target="__blank">
+              <i class="fab fa-telegram"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/company/tango6oclock/"
+            target="__blank"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a
+            href="https://open.spotify.com/show/5RVcD4XoxYwMM8UWS916MM?si=e413f0171bc24638"
+            target="__blank"
+          >
+            <i class="fab fa-spotify"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <span class="circle one"></span>
+      <span class="circle two"></span>
+
+      <form action="" method="POST">
+        {% csrf_token %}
+        <h3 class="title">Contact us</h3>
+        <div class="input-container">
+          <input type="text" name="name" class="input" required />
+          <label for="">Full Name</label>
+          <span>Full Name</span>
+        </div>
+        <div class="input-container">
+          <input type="email" name="email" class="input" required />
+          <label for="">Email</label>
+          <span>Email</span>
+        </div>
+        <div class="input-container">
+          <input type="tel" name="phone" class="input" required />
+          <label for="">Phone</label>
+          <span>Phone</span>
+        </div>
+        <div class="input-container textarea">
+          <textarea
+            name="message"
+            class="input"
+            rows="4"
+            cols="10"
+            maxlength="250"
+          ></textarea>
+          <label for="">Message</label>
+          <span>Message</span>
+          <br />
+          <br />
+          <div class="input-container1">
+            {{ form.captcha }}
+            <div class="captcha-box">
+              {{ form.captcha.image }} {{ form.captcha.hidden_field }}
+            </div>
+          </div>
+        </div>
+        <input type="submit" value="Send" class="btn" />
+      </form>
+    </div>
+  </div>
+</div>
+<script src="{% static 'javascript/contact.js' %}"></script>
+{% endblock content %}

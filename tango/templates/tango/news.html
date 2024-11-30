@@ -1,0 +1,79 @@
+{% extends "tango/base.html" %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static '/Css/news.css' %}">
+</head>
+<body>
+    <div id="news-container"></div>
+
+    <script>
+        // Function to fetch and display news
+        function fetchAndDisplayNews() {
+            const apiKey = '31942abd453047d8ab52d91c7a754458';
+            const apiUrl = `https://newsapi.org/v2/everything?q=India+security+crime&apiKey=${apiKey}`;
+
+            const newsContainer = document.getElementById('news-container');
+
+            // Clear previous news items
+            newsContainer.innerHTML = '';
+
+            // Fetch new news
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'ok') {
+                        // Shuffle the array of articles
+                        const shuffledArticles = shuffleArray(data.articles);
+
+                        const addedTitles = [];
+
+                        // Loop through the shuffled articles and display up to 10 of them
+                        for (let index = 0; index < Math.min(10, shuffledArticles.length); index++) {
+                            const article = shuffledArticles[index];
+
+                            // Check if the title is already added and the article has content, a valid URL, and an image
+                            if (!addedTitles.includes(article.title) && article.content && article.url && article.urlToImage) {
+                                const newsItem = document.createElement('div');
+                                newsItem.classList.add('news-card');
+
+                                newsItem.innerHTML = `
+                                    <img src="${article.urlToImage}" alt="${article.title}">
+                                    <div class="news-content">
+                                        <h2>${article.title}</h2>
+                                        <p>${article.description}</p>
+                                        <a href="${article.url}" class="read-more" target="_blank">Read more</a>
+                                    </div>
+                                `;
+
+                                newsContainer.appendChild(newsItem);
+
+                                // Add the title to the addedTitles array
+                                addedTitles.push(article.title);
+                            }
+                        }
+                    } else {
+                        console.error('Error fetching news:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching news:', error);
+                });
+        }
+
+        // Function to shuffle an array using Fisher-Yates algorithm
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Call the function when the page is loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch and display news initially
+            fetchAndDisplayNews();
+        });
+    </script>
+    {% endblock content %}

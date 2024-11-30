@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Tango Six O'Clock | Profile</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+   <link rel="shortcut icon" href="{% static 'images/Tango.webp' %}" type="image/x-icon">
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="{% static '/Css/profile.css' %}">
+
+</head>
+<body>
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a class="logo"><img width="80px" height="80px" src="{% static 'images/TangoLogo.png' %}" alt="Tango Logo"></a>
+
+      <!-- <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form> -->
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+      </div>
+
+      <div class="profile">
+         {% comment %} <img src="{% static 'images/profile.jpg' %}" class="image" alt="profile"> {% endcomment %}
+         {% comment %} <img src="{{request.user.userprofile.photo.url}}" class="image" alt="Profile Picture"> {% endcomment %}
+         {% comment %} <h3 class="name">{{request.user.email}}</h3> {% endcomment %}
+        <!-- <p class="role">Student</p>
+         <a href="profile.html" class="btn">View Profile</a> -->
+         <div class="flex-btn">
+            <a href="{% url 'logoutpage' %}" class="option-btn">Logout</a>
+            <a href="{% url 'help' %}" class="option-btn">Support</a>
+         </div>
+      </div>
+
+   </section>
+
+</header>   
+
+<div class="side-bar">
+
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   {% comment %} <div class="profile">
+      <!-- <img src="images/pic-1.jpg" class="image" alt="">
+      <h3 class="name">shaikh anas</h3>
+      <p class="role">studen</p> -->
+      {% comment %} <a href="{% url 'home' %}" class="btn">Home</a> {% endcomment %}
+   {% comment %} </div> {% endcomment %} 
+
+   <nav class="navbar">
+      <a href="{% url 'home' %}"><span>Home</span></a>
+      <a href="{% url 'about' %}"><span>About</span></a>
+      <a href="{% url 'Programs' %}"><span>Programs</span></a>
+      <a href="{% url 'contact' %}"><span>Contact Us</span></a>
+      <a href="{% url 'newsletter' %}"><span>Blogs</span></a>
+      <a href="{% url 'Faq' %}"><span>FAQ</span></a>
+      {% comment %} <a href="contact.html"><i class="fas fa-headset"></i><span>Contact Us</span></a> {% endcomment %}
+   </nav>
+
+</div>
+
+<section class="user-profile">
+
+   <h1 class="heading">My Profile</h1>
+
+   <div class="info">
+
+      <div class="user">
+         <h3 class="name">Username : {{request.user.username}}</h3>
+         <h3>{{request.user.email}}</h3>
+         <p>User ID : {{form}}</p>
+         <a href="{% url 'update-profile' request.user.userprofile.profileid %}" class="inline-btn">Update Profile</a>
+         {% comment %} <a href="{% url 'home' %}" class="inline-btn">Home</a>  {% endcomment %}
+      </div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+      <div class="box-container">
+   
+         <!-- <div class="box">
+            <div class="flex">
+               <i class="fas fa-bookmark"></i>
+               <div>
+                  <span>4</span>
+                  <p>saved playlist</p>
+               </div>
+            </div>
+            <a href="#" class="inline-btn">view playlists</a>
+         </div>
+         <div class="box">
+            <div class="flex">
+               <i class="fas fa-bookmark"></i>
+               <div>
+                  <span>4</span>
+                  <p>saved playlist</p>
+               </div>
+            </div>
+            <a href="#" class="inline-btn">view playlists</a>
+         </div>
+         <div class="box">
+            <div class="flex">
+               <i class="fas fa-bookmark"></i>
+               <div>
+                  <span>4</span>
+                  <p>saved playlist</p>
+               </div>
+            </div>
+            <a href="#" class="inline-btn">view playlists</a>
+         </div> -->
+   
+      
+   
+
+   
+      </div>
+   </div>
+
+</section>
+<br>
+<br>
+<br>
+<footer class="footer">
+
+   &copy; copyright 2024 by <span>Tango</span> | All Rights Reserved!
+
+</footer>
+
+<!-- custom js file link  -->
+<script src="{% static 'javascript/profile.js' %}"></script>
+
+   
+</body>
+</html>

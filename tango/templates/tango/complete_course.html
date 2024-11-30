@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'images/Tango.webp' %}" type="image/x-icon">
+    <title>Tango Six 'Clock | Course Completion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h3 {
+            text-align: center;
+        }
+        video {
+            display: block;
+            margin: 20px auto;
+            width: 100%;
+        }
+        .button-container ,
+        .video{
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container button,
+        .button-container a.button,
+        .button-container input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none; /* Add this line for links */
+            display: inline-block; /* Add this line for links */
+            margin-top: 10px; /* Adjust margin if needed */
+        }
+        .button-container a.button:hover,
+        .button-container input[type="submit"]:hover {
+            background-color: #0056b3; /* Change color on hover */
+        }
+
+        /* Responsive CSS */
+        @media only screen and (max-width: 600px) {
+            .container {
+                max-width: 90%;
+            }
+            #player{
+                height:100%;
+                width: 98%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Congratulations!!</h3>
+        {% comment %} <p>This is a message describing the content of the video.</p> {% endcomment %}
+        <div class="video">
+        <iframe id="player" width="560" height="315"
+              src="https://www.youtube.com/embed/{{video}}" frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen oncontextmenu="return false;"></iframe>
+        </div>
+        <div class="button-container">
+            <div class="button-container">
+                <form method="POST">
+                    {% csrf_token %}
+                <input type="submit" value="Notify Me" />
+                </form>
+                <a href="{% url 'certificate' %}" class="button">Certificate</a>
+            </div>
+            {% comment %} <input type="submit" value="Notify Me" class="button" /> {% endcomment %}
+            
+            <a href="{% url 'home' %}" class="button">Home</a>
+        </div>
+    </div>
+
+</body>
+</html>

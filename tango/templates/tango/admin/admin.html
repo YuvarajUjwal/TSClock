@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tango Six O Clock | Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d8e9df;
+            text-align: center;
+            margin: 50px;
+        }
+        .form-container {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        select {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .home {
+            background-color: #ffcc00;
+            color: #fff;
+            padding: 9px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration:none;
+        }
+        .log{
+            background-color: #f44336;
+            color: #fff;
+            padding: 9px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+    <p>Welcome, <b>{{request.user.username}}</b></p>
+    <div class="form-container">
+
+        <form method="POST">
+            {% csrf_token %}
+            {% comment %} <div class="form-group">
+                <label for="textInput">Text Input:</label>
+                <input type="text" id="textInput" name="textInput" placeholder="Enter text...">
+            </div> {% endcomment %}
+            <div class="form-group">
+                <label for="id_database">Databases:</label>
+                <select id="id_database" name="database">
+                    <option value="select">----Select----</option>
+                    <option value="CSVUser">Multiple User Creation</option>
+                    <option value="user">Users</option>
+                    <option value="payment">Payment Details</option>
+                    <option value="profile">Profiles</option>
+                    <option value="coupon">Create coupon code</option>
+                    <option value="couponuser">Coupon code user</option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+            <a class="home" href="{% url 'home' %}">Home</a>
+            <a class="log" href="{% url 'logoutpage' %}">Logout</a>
+        </form>
+        
+    </div>
+    
+</body>
+</html>

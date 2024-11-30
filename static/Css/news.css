@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800&display=swap");
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#news-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.news-card {
+    background-color: #d8e9df;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    width: 100%; /* Set the width to 100% for the banner layout */
+    overflow: hidden;
+}
+
+.news-card img {
+    width: 100%; /* Make the image take the full width of the container */
+    max-width: 350px; /* Adjust the max-width to your preference */
+    height: auto; /* Maintain aspect ratio while fitting width */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px; /* Add border-radius to the bottom corners */
+    border-bottom-right-radius: 8px;
+}
+
+.news-content {
+    padding: 20px; /* Increase the padding for the content within the news card */
+}
+
+.news-content h2 {
+    color: #208245;
+    text-align: left;
+    font-size: 20px; /* Increase the font size of the title */
+    margin-bottom: 10px; /* Add margin to separate title and description */
+}
+
+.news-content p {
+    color: #333;
+    text-align: justify;
+    font-size: 16px; /* Increase the font size of the description */
+    margin-bottom: 10px;
+}
+
+.read-more {
+    background-color: #208245;
+    color: #fff;
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.read-more:hover {
+    background-color: #fff;
+    color: #208245;
+}

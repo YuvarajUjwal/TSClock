@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="referrer" content="strict-origin-when-cross-origin">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Tango Six O'Clock | Watch</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+   
+   <link rel="shortcut icon" href="{% static 'images/Tango.webp' %}" type="image/x-icon">
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="{% static '/Css/profile.css' %}">
+
+</head>
+<body>
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a class="logo"><img width="80px" height="80px" src="{% static 'images/TangoLogo.png' %}" alt="Tango Logo"></a>
+
+      
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         
+      </div>
+
+      <div class="profile">
+         {% comment %} <img src="{{request.user.userprofile.photo.url}}" class="image" alt="Profile Picture"> {% endcomment %}
+         {% comment %} <h3 class="name">{{request.user.email}}</h3> {% endcomment %}
+         <div class="flex-btn">
+            {% comment %} <a href="{% url 'logoutpage' %}" class="option-btn">Logout</a> {% endcomment %}
+            <a href="{% url 'help' %}" class="option-btn">Support</a>
+            <a href="{% url 'profile' %}" class="option-btn">Profile</a>
+         </div>
+      </div>
+
+   </section>
+
+</header>   
+
+<div class="side-bar">
+
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   {% comment %} <div class="profile">
+      <p class="name">Username : {{request.user.username}}</p>
+      <p class="name">{{request.user.email}}</p>
+      <p class="role">User ID : {{request.user.userprofile.profileid}}</p>
+      <a href="{% url 'profile' %}" class="btn">Profile</a>
+   </div> {% endcomment %}
+
+   <nav class="navbar">
+      <a href="{% url 'home' %}"><span>Home</span></a>
+      <a href="{% url 'about' %}"><span>About</span></a>
+      <a href="{% url 'Programs' %}"><span>Programs</span></a>
+      <a href="{% url 'contact' %}"><span>Contact Us</span></a>
+      <a href="{% url 'newsletter' %}"><span>Blogs</span></a>
+      <a href="{% url 'Faq' %}"><span>FAQ</span></a>
+   </nav>
+
+</div>
+
+{% comment %} <section class="watch-video">
+
+   <div class="col">
+      <div class="mx-auto">
+          <iframe id='player' class="mx-auto" width="100%" height="315"
+              src="https://www.youtube.com/embed/{{video.video_id}}" frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen oncontextmenu="return false;"></iframe>
+      </div>
+  </div>
+</section> {% endcomment %}
+
+<section class="watch-video">
+
+   <div class="video-container">
+      <div class="video">
+         {% comment %} <video src="{{video.video_id}}" controls id="video" controlsList="nodownload" type='video/mp4' oncontextmenu="return false;"></video> {% endcomment %}
+	{% comment %} <video src="{% url 'video_proxy' video.video_id %}" controls id="video" controlsList="nodownload" type='video/mp4' oncontextmenu="return false;"></video> {% endcomment %}
+        <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/{{video.video_id}}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="TSoC_DELTA Introduction"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+      </div>
+      <h3 class="title">{{video.title}}</h3>
+      <div class="info">
+         {% comment %} <p class="date"><i class="fas fa-calendar"></i><span>12-02-2024</span></p> {% endcomment %}
+         {% comment %} <p class="date"><i class="fas fa-heart"></i><span>44 likes</span></p> {% endcomment %}
+      </div>
+      {% comment %} <div class="tutor">
+         <img src="images/pic-2.jpg" alt="">
+         <div>
+            <h3>john deo</h3>
+            <span>developer</span>
+         </div>
+      </div> {% endcomment %}
+      <form action="" class="flex" id="questionForm">
+         <a href="#" class="inline-btn">Download References</a>
+         {% comment %} <button><i class="far fa-heart"></i><span>More</span></button> {% endcomment %}
+         <a href="https://freesuggestionbox.com/pub/czmjjbf" class="inline-btn">Share Assignment (Anonymous)</a>
+      </form>
+      {% comment %} <p class="description">
+         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque labore ratione, hic exercitationem mollitia obcaecati culpa dolor placeat provident porro.
+         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid iure autem non fugit sint. A, sequi rerum architecto dolor fugiat illo, iure velit nihil laboriosam cupiditate voluptatum facere cumque nemo!
+      </p> {% endcomment %}
+   </div>
+
+</section>
+
+
+{% comment %}<section class="playlist-videos">
+
+   <h1 class="heading">Videos List</h1>
+
+   <div class="box-container">
+      
+      {% for v in videos %}
+         <a class="box"  href="?lecture={{v.serial_number}}">
+            <i class="fas fa-play"></i>
+            <img src="{{v.thumbnail.url}}" alt="Image">
+            <h3>{{v.serial_number}}. {{v.title}}</h3>
+         </a>
+
+      {% endfor %}
+   </div>
+
+</section>{% endcomment %}
+{% if quiz_link %}
+<section class="comments">
+<h1 class="heading">Quiz</h1>
+
+   <div class="add-comment">
+      <br>
+      <h3>You need to score at least 80% to unlock the next chapter.</h3>
+      {% comment %} <textarea name="comment_box" placeholder="enter your comment" required maxlength="1000" cols="30" rows="10"></textarea> {% endcomment %}
+      <a href="{% url 'quiz' cor ch %}" class="inline-btn">Start Quiz</a>
+   </div>
+</section>
+{% endif %}
+<footer class="footer">
+
+   &copy; copyright 2024 by <span>Tango</span> | All Rights Reserved!
+
+</footer>
+
+<!-- custom js file link  -->
+<script src="{% static 'javascript/profile.js' %}"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+   var player;
+   var video_list
+document.onreadystatechange = function () {
+    if (document.readyState == 'interactive') {
+        player = document.getElementById("player")
+        video_list = document.getElementById("video_list")
+        
+        maintainRatio()
+    }
+}
+function maintainRatio() {
+    var w = player.clientWidth
+    var h = (w * 9) / 16
+    console.log({ w, h });
+    player.height = h
+    video_list.style.maxHeight = h + "px"
+}
+window.onresize = maintainRatio 
+</script>
+</body>
+</html>

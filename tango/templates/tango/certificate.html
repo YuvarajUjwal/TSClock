@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'images/Tango.webp' %}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static "Css/mona-sans.css" %}">
+    <title>Tango Six 'Clock | Certificate</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 >Certificate of Completion</h1>
+        
+            <input style="display: none;" class="dynamic-input" type="text" value="{{name}}">
+        
+        <br>
+        <div style="display: none;">
+            <label>
+                Certificate ID:
+                <input class="dynamic-input" type="text" value="{{profile}}" id="certificate-id">
+            </label>
+        </div>
+        <div style="display: none;">
+                <input class="dynamic-input" type="text" value="{{date}}">
+           
+        </div>
+        <br>
+        <a href="#" class="download-btn">Download</a>
+        <br>
+        <br>
+        <canvas class="dynamic-canvas" height="1200px" width="900px"></canvas>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dynamicInputs = document.querySelectorAll('.dynamic-input');
+            const downloadBtns = document.querySelectorAll('.download-btn');
+            const dynamicCanvases = document.querySelectorAll('.dynamic-canvas');
+
+            dynamicCanvases.forEach((canvas, index) => {
+
+
+                const ctx = canvas.getContext('2d');
+                const nameInput = dynamicInputs[index * 2];
+                const certificateIdInput = dynamicInputs[index * 2 + 1];
+                const dateInput = dynamicInputs[index * 2 + 2];
+                const downloadBtn = downloadBtns[index];
+
+                const image = new Image();
+                image.crossOrigin = "anonymous";
+                image.src = '{% static 'images/TSoc-Delta Certificate.jpg' %}';
+
+                image.onload = function () {
+                    drawImage();
+                }
+
+                function drawImage() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                    // Font size for name
+                    ctx.font = 'bold 40px "horta"';
+                    ctx.fillStyle = '#071622';
+                    ctx.fillText(nameInput.value, 100, 350);
+
+                    // Font size for date
+                    ctx.font = '15.3px "Mona Sans"';
+                    ctx.fillStyle = '#071622';
+                    ctx.fillText(dateInput.value, 160, 935);
+
+                    // Font size for certificate ID
+                    ctx.font = 'bold Mona-Sans-LightNarrow 15.3px "Mona-Sans"';
+                    ctx.fillStyle = '#071622';
+
+                    // Generate a unique certificate ID
+                    const certificateId = generateUniqueCertificateId(certificateIdInput.value);
+
+                    ctx.fillText(certificateId, 230, 905);
+                }
+
+                dynamicInputs.forEach(input => {
+                    input.addEventListener('input', function () {
+                        drawImage();
+                    });
+                });
+
+                downloadBtn.addEventListener('click', function () {
+                    // Get data URL of the canvas as JPEG
+                    const dataURL = canvas.toDataURL('image/jpeg', 0.9);
+
+                    // Set data URL as href for download link
+                    downloadBtn.href = dataURL;
+                    downloadBtn.download = 'Certificate.jpg';
+                });
+            });
+
+            function generateUniqueCertificateId(v) {
+                // For demonstration purposes, using a simple timestamp as the unique ID
+                
+                return v + "DT";
+            }
+
+            function padZero(number) {
+                return number.toString().padStart(2, '0');
+            }
+            function getUserProfile() {
+                // Replace this with your logic to retrieve the user profile
+                // For example, if you're using some authentication system, you might get it from there.
+                return {
+                    name: "John Doe" // Replace with actual user's name
+                };
+            }
+        });
+    </script>
+</body>
+
+</html>

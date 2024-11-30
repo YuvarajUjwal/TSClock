@@ -1,0 +1,45 @@
+{% load static %}
+<link rel="stylesheet" href="{% static '/Css/navbar.css' %}">
+
+    {% comment %} <div class="website-container"> {% endcomment %}
+        
+	<section class="home" id="home">
+	
+	<nav class="main-navbar">
+		<a href="{% url 'home' %}" class="logo">
+			<img src="{% static 'images/TangoLogo.png' %}">
+		</a>
+		<ul class="nav-list">
+			<li><a href="{% url 'home' %}" class="{% if request.path == '/' %}actives{% endif %}" >Home</a></li>
+        	<li><a href="{% url 'about' %}" class="{% if request.path == '/about/' %}actives{% endif %}">About</a></li>
+        	<li><a href="{% url 'Programs' %}" class= "{% if request.path == '/programs/' %}actives{% endif %}">Programs</a></li>
+        	<li><a href="{% url 'contact' %}" class="{% if request.path == '/contact/' %}actives{% endif %}">Contact Us</a></li>
+        	<li><a href="{% url 'newsletter' %}" class="{% if request.path == '/blog/' %}actives{% endif %}">Blogs</a></li>
+        	<li><a href="{% url 'Faq' %}" class="{% if request.path == '/faqs/' %}actives{% endif %}">FAQ</a></li>
+			{% comment %} <li><a href="{% url 'news' %}">News</a></li>  {% endcomment %}
+		</ul>
+		{% if request.user.is_authenticated %}
+			{% if request.user.is_superuser %}
+			<a href="{% url 'adminpage' %}" class="get-started-btn-container">
+				<button class="get-started-btn btn">Admin</button>
+			</a>
+			{% else %}
+			<a href="{% url 'profile' %}" class="get-started-btn-container">
+				<button class="get-started-btn btn">Profile</button>
+			</a>
+			{% endif %}
+		{% else %}
+		<a href="{% url 'loginpage' %}" class="get-started-btn-container">
+			<button class="get-started-btn btn">Log In</button>
+		</a>
+		{% endif %}
+		<div class="menu-btn">
+			<span></span>
+		</div>
+	</nav>
+	
+	
+	
+</section>
+    
+	<script src="{% static 'javascript/navbar.js' %}"></script>

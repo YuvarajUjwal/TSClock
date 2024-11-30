@@ -1,0 +1,123 @@
+{% load static %}
+<link rel="stylesheet" href="{% static '/Css/footer.css' %}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+<section class="footer" id="footer">
+  <div class="footer-contents">
+    <div class="footer-col footer-col-1">
+      <div class="col-title">
+        <img src="{% static 'images/TangoLogo.png' %}" />
+      </div>
+      <div class="col-contents">
+        <p>
+          Tango Six O'Clock is your Armory. Whether you are an individual,
+          family, society, institution, corporation, or state, we offer whatever
+          you need to secure and defend yourself and your assets against all
+          malicious intent or actions. Let's join forces to make Bharat Secure
+          and Safe from within.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-col footer-col-2">
+      <div class="col-title">
+        <h3>Registered Office</h3>
+      </div>
+      <div class="col-contents">
+        <div class="contact-row">
+          <span>TANGOSIXOCLOCK LLP</span><br />
+          <span
+            >G-405,Sispal Vihar AWHO,<br />
+            Sohna Road, Gurugram,<br />
+            Haryana, India-122018.</span
+          ><br />
+          <span><strong>GST NO:</strong> 06AATFT7816B1ZX</span>
+        </div>
+        {% comment %}
+        <div class="contact-row">
+          <span>Phone</span>
+          <span>+91 8287725661 (Ops - PAN India)</span>
+          <span>+91 8828742806 (Ops - Central and West India)</span>
+          <span>+91 7893139577 (Ops - South India) </span>
+        </div>
+        <div class="contact-row">
+          <span>Website</span>
+          <span>www.tangosixoclock.in</span>
+        </div>
+        <div class="contact-row">
+          <span>Email</span>
+          <span>info@tangosixoclock.in</span>
+        </div>
+        {% endcomment %}
+      </div>
+    </div>
+
+    <div class="footer-col footer-col-3">
+      <div class="col-title">
+        <h3>Quick Links</h3>
+      </div>
+      <div class="col-contents">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About Us</a>
+        <a href="{% url 'Programs' %}">Programs</a>
+        {% comment %} <a href="#">Courses</a> {% endcomment %}
+        <a href="{% url 'contact' %}">Contact Us</a>
+        <a href="{% url 'newsletter' %}">Blogs</a>
+	<a href="{% url 'Faq' %}">FAQ</a>
+      </div>
+    </div>
+
+    <div class="footer-col footer-col-3">
+      <div class="col-title">
+        <h3>Policies</h3>
+      </div>
+      <div class="col-contents">
+        <a href="{% url 'term_condition' %}" target="_blank">Terms and Conditions</a>
+        <a href="{% url 'privacy_policy' %}" target="_blank">Privacy Policy</a>
+        <a href="{% url 'return_policy' %}" target="_blank">Refund Policy</a>
+        <a href="{% url 'testimonial_policy' %}" target="_blank">No Testimony Policy</a>
+      </div>
+    </div>
+
+    <div class="footer-col footer-col-4">
+      {% comment %}
+      <div class="col-title">
+        {% comment %}
+        <h3>Connect With Us</h3>
+      </div>
+      {% endcomment %}
+      <div class="col-contents">
+        <div class="social-medi">
+          <p>Connect with us</p>
+          <div class="social-icon">
+            <a href="https://www.facebook.com/tango6oclock/" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://x.com/TangoSixOClock" target="_blank">
+              <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://wa.me/918287725661" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://t.me/IsraeliCounterCrimeEducation" target="__blank">
+              <i class="fab fa-telegram"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/tango6oclock/" target="_blank">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a
+              href="https://open.spotify.com/show/5RVcD4XoxYwMM8UWS916MM?si=e413f0171bc24638"
+             target="_blank">
+              <i class="fab fa-spotify"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copy-rights">
+    <p>&copy Created By <b>Tango Six O'Clock</b> | All Rights Reserved</p>
+  </div>
+</section>

@@ -1,0 +1,146 @@
+{% extends "tango/base.html" %} 
+{% load static %}
+ {% load course_tags %} 
+ {% block content %}
+ <link rel="stylesheet" type="text/css" href="{% static '/Css/payment.css' %}">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <title>Tango Six O'Clock | Payment </title>
+ <style>
+    body{
+        background:#edfaf1;
+    }
+  </style>
+    <div class="container">
+      <br>
+  
+     
+      <br>
+      <div class="row ">
+          <div class="col mr-auto ">
+              <div class="card ml-auto" style="width: 18rem;">
+                  <img class="card-img-top" src="{{course.thumbnail.url}}" alt="Card image cap">
+                  <div class="card-body">
+                      <h5 class="card-title">{{course.name}}</h5>
+                      <p class="card-text m-0 p-0">
+                        {% if course.discount != 0 %}
+                          Save ₹{{course.discount}}
+                          <br>
+                          <span class="price">
+                              <del>{{course.price|rupee}}</del>
+                              &nbsp;
+                              {% endif %}
+                              <span><h3>{% cal_sellprice course.price course.discount as value %}{{value|rupee}}</h3></span>
+                          </span>
+  
+                      </p>
+                  </div>
+  
+              </div>
+          </div>
+  
+  
+  
+          <div class="col ">
+              <div>
+                  <p class="display-5">{{course.name}}</p>
+                  <hr>
+
+                  {% if coupon %}
+                  <p class="alert alert-light border">
+                    Coupon Code Applied, 
+                    You Have Got ₹{{coupon.discount}} Discount!
+                  </p>
+
+              <p class="display-5"><pre><h5>Course Amount : {% cal_sellprice course.price coupon.discount as value %}{{value|rupee}}</h5></pre></p>
+              <p class="display-6"><pre><h5>18% GST       : ₹{{gst}}</h5></pre></p>
+              <hr>
+              <p class="display-5"><pre><h4>Total Amount: <b>₹{{amount}}</b></h4></pre></p>  
+              <a class="btn btn-success" href="?action=create_payment&couponcode={{coupon.code}}">Continue to Payment</a>
+                    
+                
+                {% else %}
+                <p class="display-6"><pre><h5>Course Amount : {% cal_sellprice course.price course.discount as value %}{{value|rupee}}</h5></pre></p> 
+                <p class="display-6"><pre><h5>18% GST       : ₹{{gst}}</h5></pre></p>
+                <hr>
+                <p class="display-5"><pre><h4>Total Amount: <b>₹{{amount}}</b></h4></pre></p>
+
+                    {% if coupon %}
+                    <br>
+                    {% else %}
+                    <br>
+                    <div class="border p-4 rounded border-success">
+                            {% if couponcode_message %}
+                        <div class="alert alert-info">{{couponcode_message}}</div>
+                            {% endif %}
+                        <p>Enter your Coupon Code here </p>
+                        <form method="GET">
+                            <div class="col-lg-5 form-group">
+                                <input type="text" name="couponcode" class="form-control" id="" placeholder="XYZ000">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Apply" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                      {% endif %}
+                      <br>
+                    <a class="btn btn-success" href="?action=create_payment">Continue to Payment</a>
+                {% endif %}
+                  
+              </div>
+              
+
+              
+          </div>
+
+      </div>
+  </div>
+  <br>
+  <br>
+  {% if order is not None %}
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  
+  
+  <script>
+    
+  
+      var options = {
+          "key": "rzp_live_0JNj8abM7pJbL3", 
+          "name": "Tango Six O'Clock",
+          "description": "Payment For {{course.name}}",
+          "image": "/images/Tango.webp",
+          "order_id": "{{order.id}}", 
+          "callback_url": "https://www.tangosixoclock.in/verify_payment/",
+          "prefill": {
+              "name": "{{user.username}}", 
+              "email": "{{user.email}}",
+          },
+          "theme": {
+              "color": "#208245"
+          }
+      };
+      var rzp1 = new Razorpay(options);
+  
+      rzp1.open();
+  
+  </script>
+  {% endif %}
+  
+  {% if error is not None %}
+  
+  <script>
+  
+      window.onload = ()=>{
+          alert("{{error}}")
+      }
+  
+  </script>
+  
+  {% endif %}
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+{% endblock content %}

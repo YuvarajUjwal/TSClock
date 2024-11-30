@@ -1,0 +1,9 @@
+from django.apps import AppConfig
+
+
+class TangoConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'tango'
+
+    def ready(self) -> None:
+       import tango.signals
